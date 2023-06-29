@@ -89,7 +89,7 @@ app.register(multipart, {
 app.register(fastifyCookie);
 
 app.register(staticFiles, {
-  root: path.join(__dirname, "..", "public"), //tem que retornar uma pasta para acessar a public que está fora da pasta src
+  root: path.join(__dirname, "..", "public"), // tem que retornar uma pasta para acessar a public que está fora da pasta src
   prefix: "/public",
   // constraints: { host: env.APP_HOST }, //remover
 });
