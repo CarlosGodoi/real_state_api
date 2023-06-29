@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = env("ERD_PATH")
+  theme    = "dark"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  CORRETOR
+  COMPRADOR
+}
+
+model Usuario {
+  id              String            @id @default(uuid())
+  nome            String
+  email           String            @unique
+  senha           String
+  telefone        String?
+  perfil          Role
+  createdAt       DateTime          @default(now())
+  ImovelUsuario   ImovelCorretor[]
+  CompradorImovel CompradorImovel[]
+
+  @@map("usuario")
+}
+
+model Endereco {
+  id       String  @id @default(uuid())
+  rua      String
+  bairro   String
+  cidade   String
+  numero   Int
+  cep      String
+  imovelId String? @unique
+  Imovel   Imovel? @relation(fields: [imovelId], references: [id])
+
+  @@map("endereco")
+}
+
+model CompradorImovel {
+  id        String  @id @default(uuid())
+  usuarioId String
+  imovelId  String
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+  imovel    Imovel  @relation(fields: [imovelId], references: [id])
+
+  @@map("comprador_imovel")
+}
+
+model ImovelCorretor {
+  id        String  @id @default(uuid())
+  usuarioId String?
+  imovelId  String? @unique
+
+  usuario Usuario? @relation(fields: [usuarioId], references: [id])
+  imovel  Imovel?  @relation(fields: [imovelId], references: [id])
+
+  @@map("imovel_usuarios")
+}
+
+enum TipoContrato {
+  VENDA
+  ALUGUEL
+}
+
+enum StatusImovel {
+  NEGOCIACAO
+  VENDIDO
+  ALUGADO
+  PENDENTE
+}
+
+model Imovel {
+  id               String            @id @default(uuid())
+  tipoContrato     TipoContrato      @map("tipo_contrato")
+  quantiadeQuartos Int               @map("quantidade_quartos")
+  area             Float
+  preco            Int
+  endereco         Endereco?
+  status           StatusImovel
+  createdAt        DateTime          @default(now())
+  ImovelUsuario    ImovelCorretor?
+  CompradorImovel  CompradorImovel[]
+  ImageImovel      ImageImovel[]
+}
+
+model ImageImovel {
+  id       String @id @default(uuid())
+  path     String
+  imovelId String
+  imovel   Imovel @relation(fields: [imovelId], references: [id])
+
+  @@map("image_imovel")
+}
