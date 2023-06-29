@@ -1,5 +1,11 @@
 # App Real State
 
+## API desenvolvida em node Js + Prisma + Fastify
+### Instalar as dependências 
+=> npm install
+### Criar DB no Docker 
+=> docker compose up
+
 ## RFs (Requisitos funcionais)
 
 - [x] Deve ser possível se cadastrar na aplicação
