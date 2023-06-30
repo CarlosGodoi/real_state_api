@@ -11,7 +11,7 @@ export class CreateImmobileUseCase {
     area,
     endereco,
     preco,
-    quantiadeQuartos,
+    quantidadeQuartos,
     tipoContrato,
     corretorId,
     images,
@@ -28,7 +28,7 @@ export class CreateImmobileUseCase {
       area,
       endereco,
       preco,
-      quantiadeQuartos,
+      quantidadeQuartos,
       tipoContrato,
       corretorId,
     })

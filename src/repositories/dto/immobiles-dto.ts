@@ -9,7 +9,7 @@ interface IEndereco {
 export interface ICreateImovelDTO {
   id?: string
   tipoContrato: TipoContrato
-  quantiadeQuartos: number
+  quantidadeQuartos: number
   area: number
   preco: number
   endereco: IEndereco
@@ -20,7 +20,7 @@ export interface ICreateImovelDTO {
 export interface IUpdateImovelDTO {
   id: string
   tipoContrato?: TipoContrato
-  quantiadeQuartos?: number
+  quantidadeQuartos?: number
   preco?: number
   status?: StatusImovel
   corretorId?: string

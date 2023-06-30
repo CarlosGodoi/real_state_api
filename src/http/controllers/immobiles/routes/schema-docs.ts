@@ -11,7 +11,7 @@ export const schemaCreate = {
       type: 'object',
       properties: {
         tipoContrato: { type: 'string' },
-        quantiadeQuartos: { type: 'number' },
+        quantidadeQuartos: { type: 'number' },
         area: { type: 'number' },
         preco: { type: 'number' },
         status: { type: 'string' },
@@ -33,7 +33,7 @@ export const schemaCreate = {
         type: 'object',
         properties: {
           tipoContrato: { type: 'string' },
-          quantiadeQuartos: { type: 'number' },
+          quantidadeQuartos: { type: 'number' },
           area: { type: 'number' },
           preco: { type: 'number' },
           status: { type: 'string' },
@@ -74,7 +74,7 @@ export const schemaListagem = {
               type: 'object',
               properties: {
                 tipoContrato: { type: 'string' },
-                quantiadeQuartos: { type: 'number' },
+                quantidadeQuartos: { type: 'number' },
                 area: { type: 'number' },
                 preco: { type: 'number' },
                 status: { type: 'string' },
@@ -139,7 +139,7 @@ export const schemaUpdate = {
         type: 'object',
         properties: {
           tipoContrato: { type: 'string' },
-          quantiadeQuartos: { type: 'number' },
+          quantidadeQuartos: { type: 'number' },
           area: { type: 'number' },
           preco: { type: 'number' },
           status: { type: 'string' },

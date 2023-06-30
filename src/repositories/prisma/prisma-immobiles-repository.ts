@@ -52,7 +52,7 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
           },
         },
         preco: data.preco,
-        quantiadeQuartos: data.quantiadeQuartos,
+        quantidadeQuartos: data.quantidadeQuartos,
         status: 'PENDENTE',
         tipoContrato: data.tipoContrato,
         endereco: {

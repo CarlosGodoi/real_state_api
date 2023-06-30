@@ -9,7 +9,7 @@ export async function createImmobile(
 ) {
   const createImovelBodySchema = z.object({
     tipoContrato: z.enum(['VENDA', 'ALUGUEL']),
-    quantiadeQuartos: z.number(),
+    quantidadeQuartos: z.number(),
     area: z.number(),
     preco: z.number(),
     status: z.enum(['NEGOCIACAO', 'VENDIDO', 'ALUGADO', 'PENDENTE']),
@@ -24,7 +24,7 @@ export async function createImmobile(
   const body: ICreateImovelDTO = request.body as ICreateImovelDTO
   body.corretorId = request.user.sub
 
-  const { area, endereco, preco, quantiadeQuartos, status, tipoContrato } =
+  const { area, endereco, preco, quantidadeQuartos, status, tipoContrato } =
     createImovelBodySchema.parse(request.body)
 
   try {
@@ -32,7 +32,7 @@ export async function createImmobile(
 
     await createImovelUseCase.execute({
       corretorId: body.corretorId,
-      quantiadeQuartos,
+      quantidadeQuartos,
       area,
       preco,
       tipoContrato,
