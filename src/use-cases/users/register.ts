@@ -2,7 +2,7 @@ import { UsersRepository } from '@/repositories/users-repository'
 import { Role, Usuario } from '@prisma/client'
 import { hash } from 'bcryptjs'
 import { UserAlreadyExistsError } from '../errors/user-already-exists-error'
-import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
+// import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 
 interface RegisterUseCaseRequest {
   nome: string
@@ -32,10 +32,6 @@ export class RegisterUseCase {
 
     if (emailExists) {
       throw new UserAlreadyExistsError()
-    }
-
-    if (perfil === 'CORRETOR' || perfil === 'ADMIN') {
-      throw new InvalidCredentialsError()
     }
 
     const user = await this.usersRepository.create({

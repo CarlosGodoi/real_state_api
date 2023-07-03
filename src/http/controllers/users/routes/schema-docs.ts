@@ -1,4 +1,4 @@
-import { verifyJWT } from '@/http/middlewares/verify-jwt'
+// import { verifyJWT } from '@/http/middlewares/verify-jwt'
 
 export const registerSchema = {
   schema: {
@@ -99,7 +99,6 @@ export const authenticateSchema = {
 }
 
 export const profileSchema = {
-  onRequest: [verifyJWT],
   schema: {
     description: 'Perfil',
     tags: ['Profile'],

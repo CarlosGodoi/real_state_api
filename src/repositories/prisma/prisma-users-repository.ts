@@ -16,7 +16,6 @@ export class PrismaUsersRepository implements UsersRepository {
     const user = await prisma.usuario.findFirst({
       where: {
         id,
-        perfil: 'CORRETOR',
       },
     })
 
