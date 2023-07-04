@@ -1,9 +1,9 @@
 import { PrismaImmobilesRepository } from '@/repositories/prisma/prisma-immobiles-repository'
-import { ListImovelUseCase } from '../Immobiles/list'
+import { ListImmobilesUseCase } from '../Immobiles/list'
 
 export function makeListImmobilesUseCase() {
   const listImmobilesRepository = new PrismaImmobilesRepository()
-  const listImmobilesUseCase = new ListImovelUseCase(listImmobilesRepository)
+  const listImmobilesUseCase = new ListImmobilesUseCase(listImmobilesRepository)
 
   return listImmobilesUseCase
 }

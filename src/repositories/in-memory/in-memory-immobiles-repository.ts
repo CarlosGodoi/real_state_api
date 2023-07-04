@@ -17,14 +17,14 @@ export class InMemoryImmobilesRepository implements ImmobileRepository {
 
   async create(data: ICreateImovelDTO) {
     const imovel = {
-      id: 'imovel-01',
+      id: data.id || 'imovel-01',
       tipoContrato: data.tipoContrato,
       quantidadeQuartos: data.quantidadeQuartos,
       area: data.area,
       preco: data.preco,
       endereco: data.endereco,
       status: data.status || StatusImovel.ALUGADO,
-      corretorId: data.corretorId || '',
+      corretorId: data.corretorId || 'corretor-1',
       images: data.images || undefined,
       createdAt: new Date(),
     }

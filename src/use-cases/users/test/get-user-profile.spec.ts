@@ -21,6 +21,8 @@ describe('Get User Profile Use Case', () => {
       telefone: '51 9999-99999',
     })
 
+    console.log(createdUser)
+
     const { user } = await sut.execute({
       userId: createdUser.id,
     })

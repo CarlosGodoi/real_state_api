@@ -96,6 +96,7 @@ app.register(staticFiles, {
 app.register(routes)
 
 app.setErrorHandler((error, _, reply) => {
+  console.log(error)
   if (error instanceof ZodError) {
     return reply
       .status(400)
