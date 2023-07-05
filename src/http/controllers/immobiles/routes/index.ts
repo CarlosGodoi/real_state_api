@@ -13,7 +13,7 @@ import {
 } from './schema-docs'
 
 export async function imovelRoutes(app: FastifyInstance) {
-  app.addHook('onRequest', verifyJWT)
+  app.addHook('preHandler', verifyJWT)
 
   app.post('/imovel', { ...schemaCreate }, createImmobile)
 

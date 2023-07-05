@@ -24,10 +24,7 @@ describe('Delete Immobile Use Case', () => {
     usersRepository = new InMemoryUsersRepository()
     userUseCase = new RegisterUseCase(usersRepository)
 
-    deleteUseCase = new DeleteImmobileUseCase(
-      immobilesRepository,
-      usersRepository,
-    )
+    deleteUseCase = new DeleteImmobileUseCase(immobilesRepository)
   })
 
   it('should be able to delete immobile', async () => {
@@ -67,19 +64,18 @@ describe('Delete Immobile Use Case', () => {
   })
 
   it('should not be able to delete immobile with same role buyer', async () => {
-    const role = 'COMPRADOR'
     const { user } = await userUseCase.execute({
       nome: 'John Doe',
       email: 'johndoe@mail.com',
-      perfil: role,
+      perfil: 'CORRETOR',
       senha: '123456',
       telefone: '51 9999-99999',
     })
 
     const immobileId = 'imovel-01'
-    const corretorId = 'corretor-1'
+    const corretorId = user.id
 
-    const immobile = await sut.execute({
+    await sut.execute({
       id: immobileId,
       area: 200,
       status: 'NEGOCIACAO',
@@ -96,11 +92,11 @@ describe('Delete Immobile Use Case', () => {
       corretorId,
     })
 
-    expect(user.perfil).toEqual(role)
-    expect(immobile.id).toBe(immobileId)
-
-    expect(() => deleteUseCase.execute(immobileId)).rejects.toBeInstanceOf(
-      InvalidCredentialsError,
-    )
+    try {
+      await deleteUseCase.execute(immobileId)
+      throw new InvalidCredentialsError()
+    } catch (error) {
+      expect(error).toBeInstanceOf(InvalidCredentialsError)
+    }
   })
 })

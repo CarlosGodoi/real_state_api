@@ -71,35 +71,35 @@ describe('Update Immobile Use Case', () => {
     expect(updateImmobile).toBeDefined()
   })
 
-   it('it should not be possible to update the datas of a immobile', async () => {
-     const role = 'COMPRADOR'
-     const { user } = await userUseCase.execute({
-       nome: 'John Doe',
-       email: 'johndoe@mail.com',
-       perfil: role,
-       senha: '123456',
-       telefone: '51 9999-99999',
-     })
+  it('it should not be possible to update the datas of a immobile', async () => {
+    const role = 'COMPRADOR'
+    await userUseCase.execute({
+      nome: 'John Doe',
+      email: 'johndoe@mail.com',
+      perfil: role,
+      senha: '123456',
+      telefone: '51 9999-99999',
+    })
 
-     try {
-       await sut.execute({
-         area: 200,
-         status: 'NEGOCIACAO',
-         quantidadeQuartos: 3,
-         endereco: {
-           rua: 'rua teste',
-           bairro: 'teste',
-           cidade: 'teste-1',
-           numero: 123,
-           cep: '93533500',
-         },
-         preco: 200,
-         tipoContrato: 'VENDA',
-         corretorId: 'non-exists',
-       })
-       throw new InvalidCredentialsError()
-     } catch (error) {
-       expect(error).toBeInstanceOf(InvalidCredentialsError)
-     }
-   })
+    try {
+      await sut.execute({
+        area: 200,
+        status: 'NEGOCIACAO',
+        quantidadeQuartos: 3,
+        endereco: {
+          rua: 'rua teste',
+          bairro: 'teste',
+          cidade: 'teste-1',
+          numero: 123,
+          cep: '93533500',
+        },
+        preco: 200,
+        tipoContrato: 'VENDA',
+        corretorId: 'non-exists',
+      })
+      throw new InvalidCredentialsError()
+    } catch (error) {
+      expect(error).toBeInstanceOf(InvalidCredentialsError)
+    }
+  })
 })

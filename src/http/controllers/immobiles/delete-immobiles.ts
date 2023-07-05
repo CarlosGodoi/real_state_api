@@ -11,7 +11,6 @@ export async function deleteImmobile(
     const deleteImmobileUseCase = makeDeleteImmobileUseCase()
 
     const { id } = request.params as { id: string }
-    // console.log('id request:', id)
 
     await deleteImmobileUseCase.execute(id)
   } catch (error) {

@@ -1,26 +1,14 @@
 import { ImmobileRepository } from '@/repositories/immobiles-repository'
 import { ResourceNotFoundError } from '../errors/resource-not-found-error'
-import { UsersRepository } from '@/repositories/users-repository'
-import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 
 export class DeleteImmobileUseCase {
-  constructor(
-    private imovelRepository: ImmobileRepository,
-    private usersRepository: UsersRepository,
-  ) {}
+  constructor(private imovelRepository: ImmobileRepository) {}
 
   async execute(id: string): Promise<void> {
     const imovelExists = await this.imovelRepository.findById(id)
 
     if (!imovelExists) {
       throw new ResourceNotFoundError()
-    }
-
-    const isAuthenticated = await this.usersRepository.findById(id)
-    console.log(isAuthenticated)
-
-    if (isAuthenticated?.perfil === 'COMPRADOR') {
-      throw new InvalidCredentialsError()
     }
 
     await this.imovelRepository.delete(id)

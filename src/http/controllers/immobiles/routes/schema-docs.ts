@@ -2,7 +2,7 @@ import { verifyJWT } from '@/http/middlewares/verify-jwt'
 import { verifyUserRole } from '@/http/middlewares/verify-user-role'
 
 export const schemaCreate = {
-  onRequest: [verifyJWT, verifyUserRole('CORRETOR')],
+  preHandler: [verifyJWT, verifyUserRole('CORRETOR')],
   schema: {
     description: 'Criar imovel',
     tags: ['Auth'],
@@ -100,7 +100,7 @@ export const schemaListagem = {
 }
 
 export const schemaDelete = {
-  onRequest: [verifyJWT, verifyUserRole('CORRETOR')],
+  preHandler: [verifyJWT, verifyUserRole('CORRETOR')],
   schema: {
     description: 'Deletar Imóveis',
     tags: ['Auth'],
@@ -120,7 +120,7 @@ export const schemaDelete = {
 }
 
 export const schemaUpdate = {
-  onRequest: [verifyJWT, verifyUserRole('CORRETOR')],
+  preHandler: [verifyJWT, verifyUserRole('CORRETOR')],
   schema: {
     description: 'Atualizar imovel',
     tags: ['Auth'],
