@@ -1,12 +1,18 @@
 # App Real State
 
 ## API desenvolvida em node Js + Prisma + Fastify
-### Instalar as dependências 
+
+### 👨‍💻 Instalção de dependências
+
 => npm install
-### Criar DB no Docker 
+
+### 👨‍💻 Criar DB no Docker
+
 => docker compose up
 
-## RFs (Requisitos funcionais)
+### Testes unitários ✅
+
+## RFs (Requisitos funcionais) ✅
 
 - [x] Deve ser possível se cadastrar na aplicação
 - [x] Deve ser possível se autenticar na aplicação
@@ -17,13 +23,13 @@
 - [x] Deve ser possível atualizar os dados do imóvel cadastrado
 - [x] Deve ser possível excluir/desabilitar imovél
 
-## RNs (Regras de negócio)
+## RNs (Regras de negócio) ✅
 
 - [x] Usuário não pode se cadastrar com email duplicado
 - [x] Somente usuário corretor pode cadastrar imóveis
 - [x] Somente usuário corretor pode desabilitar/excluir cadastro de imovel
 
-## RNFs (Requisitos não-funcionais)
+## RNFs (Requisitos não-funcionais) ✅
 
 - [x] A senha do usuário dever estar criptografada
 - [x] Os Dados devem ser persistidos em banco postgres
