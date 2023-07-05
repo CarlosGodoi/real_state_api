@@ -10,10 +10,7 @@ export class DeleteImmobileUseCase {
   ) {}
 
   async execute(id: string): Promise<void> {
-    console.log(id)
-
     const imovelExists = await this.imovelRepository.findById(id)
-    console.log(imovelExists)
 
     if (!imovelExists) {
       throw new ResourceNotFoundError()

@@ -31,8 +31,6 @@ export async function upadateImmobile(
     })
   } catch (error) {
     if (error) {
-      console.log(error)
-
       return reply.status(409).send({ message: error })
     }
     throw error
