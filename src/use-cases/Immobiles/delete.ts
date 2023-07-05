@@ -17,11 +17,9 @@ export class DeleteImmobileUseCase {
     }
 
     const isAuthenticated = await this.usersRepository.findById(id)
+    console.log(isAuthenticated)
 
-    if (
-      isAuthenticated?.perfil !== 'CORRETOR' &&
-      isAuthenticated?.perfil !== 'ADMIN'
-    ) {
+    if (isAuthenticated?.perfil === 'COMPRADOR') {
       throw new InvalidCredentialsError()
     }
 

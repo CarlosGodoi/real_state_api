@@ -4,13 +4,15 @@
 
 ### 👨‍💻 Instalção de dependências
 
-=> npm install
+npm install
 
 ### 👨‍💻 Criar DB no Docker
 
-=> docker compose up
+docker compose up
 
-### Testes unitários ✅
+## Testes unitários ✅
+
+## API Documentada com Swagger ✅
 
 ## RFs (Requisitos funcionais) ✅
 

@@ -17,7 +17,7 @@ export async function imovelRoutes(app: FastifyInstance) {
 
   app.post('/imovel', { ...schemaCreate }, createImmobile)
 
-  app.post('/imovel/:id/images', uploadImmobile)
+  app.post('/imovel/images/:id', uploadImmobile)
 
   app.put('/imovel/:id', schemaUpdate, upadateImmobile)
 
