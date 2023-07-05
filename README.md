@@ -2,11 +2,11 @@
 
 ## API desenvolvida em node Js + Prisma + Fastify
 
-### 👨‍💻 Instalção de dependências
+## 👨‍💻 Instalção de dependências
 
 npm install
 
-### 👨‍💻 Criar DB no Docker
+## 👨‍💻 Criar DB no Docker
 
 docker compose up
 
