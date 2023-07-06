@@ -12,7 +12,8 @@ docker compose up
 
 ## Testes unitários ✅
 
-## API Documentada com Swagger ✅
+## API Documentada com Swagger
+Faltando ajustar algumas rotas na documentação
 
 ## RFs (Requisitos funcionais) ✅
 
