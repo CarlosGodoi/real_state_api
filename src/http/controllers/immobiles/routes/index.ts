@@ -21,7 +21,7 @@ export async function imovelRoutes(app: FastifyInstance) {
 
   app.put('/imovel/:id', schemaUpdate, upadateImmobile)
 
-  app.get('/list', schemaListagem, listImmobiles)
+  app.get('/imoveis', schemaListagem, listImmobiles)
 
   app.delete('/imovel/:id', schemaDelete, deleteImmobile)
 }

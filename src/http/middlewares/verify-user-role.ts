@@ -14,24 +14,27 @@ export function verifyUserRole(roleToVerify: 'ADMIN' | 'CORRETOR') {
 export function validateUserRegister(app: FastifyInstance) {
   return async (request: FastifyRequest, reply: FastifyReply) => {
     const token = request.headers.authorization?.split('Bearer ')[1] || ''
-    const { perfil } = request.body as {
-      perfil: 'ADMIN' | 'CORRETOR' | 'COMPRADOR'
+    const parseRequest = request.body as {
+      nome: string
+      senha: string
+      telefone: string
+      email: string
+      perfil?: 'ADMIN' | 'CORRETOR' | 'COMPRADOR'
     }
 
     if (token) {
+      if (!parseRequest.perfil)
+        return reply.status(403).send({ message: 'Perfil is required.' })
+
       const { role } = app.jwt.decode(token) as {
         role: 'ADMIN' | 'CORRETOR' | 'COMPRADOR'
       }
       if (role === 'CORRETOR')
         return reply.status(403).send({ message: 'Permision denied' })
 
-      if (role === 'ADMIN' && perfil === 'COMPRADOR') {
+      if (role === 'ADMIN' && parseRequest.perfil === 'COMPRADOR') {
         return reply.status(403).send({ message: 'Permision denied.' })
       }
-    }
-
-    if (perfil !== 'COMPRADOR') {
-      return reply.status(403).send({ message: 'Unauthorized.' })
-    }
+    } else request.body = { ...parseRequest, perfil: 'COMPRADOR' }
   }
 }

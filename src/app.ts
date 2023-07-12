@@ -7,12 +7,17 @@ import { SwaggerTheme } from 'swagger-themes'
 import multipart from '@fastify/multipart'
 import staticFiles from '@fastify/static'
 import path from 'path'
+import cors from '@fastify/cors'
 
 import { ZodError } from 'zod'
 import { env } from './env'
 import { routes } from './http/routes'
 
 export const app = fastify()
+
+app.register(cors, {
+  // put your options here
+})
 
 app.register(swagger, {
   swagger: {
