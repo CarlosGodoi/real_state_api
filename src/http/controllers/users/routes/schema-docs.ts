@@ -85,6 +85,18 @@ export const authenticateSchema = {
         type: 'object',
         properties: {
           token: { type: 'string' },
+          usuario: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              nome: { type: 'string' },
+              email: { type: 'string' },
+              perfil: {
+                type: 'string',
+                enum: ['ADMIN', 'CORRETOR', 'COMPRADOR'],
+              },
+            },
+          },
         },
       },
       400: {

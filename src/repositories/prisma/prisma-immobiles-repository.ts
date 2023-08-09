@@ -6,7 +6,8 @@ import {
   IUpdateImovelDTO,
   IUploadImovelDTO,
 } from '../dto/immobiles-dto'
-import { Imovel, Prisma, StatusImovel, TipoContrato } from '@prisma/client'
+import { Imovel, Prisma, TipoContrato, StatusImovel } from '@prisma/client'
+import { env } from '@/env'
 
 const Pagination = (skip: number, take: number) => {
   const calcSkip = (skip - 1) * take
@@ -20,13 +21,12 @@ const Pagination = (skip: number, take: number) => {
 
 export interface IImoveisParamsGetAll extends IPagination {
   search?: string
-  filter?: {
-    preco?: number
-    tipoContrato?: TipoContrato[]
-    status?: StatusImovel[]
-    cidade?: string
-    bairro?: string
-  }
+  precoMin?: number
+  precoMax?: number
+  tipoContrato?: string
+  status?: string
+  cidade?: string
+  bairro?: string
 }
 export class PrismaImmobilesRepository implements ImmobileRepository {
   async create(data: ICreateImovelDTO) {
@@ -84,36 +84,55 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
     return imovel
   }
 
-  async getAll({ skip, take, filter }: IImoveisParamsGetAll) {
+  async getAll({ skip, take, search, ...filter }: IImoveisParamsGetAll) {
     let pagination: IPagination = {}
 
     let where: Prisma.ImovelWhereInput = {}
     if (skip && take) pagination = Pagination(skip, take)
 
     if (filter) {
-      if (filter.preco) {
+      if (filter.precoMax && filter.precoMin) {
         where = {
           ...where,
           preco: {
-            gte: filter.preco,
+            lte: +filter.precoMax,
+            gte: +filter.precoMin,
+          },
+        }
+      } else if (filter.precoMax) {
+        where = {
+          ...where,
+          preco: {
+            lte: +filter.precoMax,
+          },
+        }
+      } else if (filter.precoMin) {
+        where = {
+          ...where,
+          preco: {
+            gte: +filter.precoMin,
           },
         }
       }
 
       if (filter.tipoContrato) {
+        const parseTipoContratoInArray = filter.tipoContrato.split(
+          ',',
+        ) as TipoContrato[]
         where = {
           ...where,
           tipoContrato: {
-            in: filter.tipoContrato,
+            in: parseTipoContratoInArray,
           },
         }
       }
 
       if (filter.status) {
+        const parseStatusInArray = filter.status.split(',') as StatusImovel[]
         where = {
           ...where,
           status: {
-            in: filter.status,
+            in: parseStatusInArray,
           },
         }
       }
@@ -136,6 +155,30 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
       }
     }
 
+    if (search) {
+      where = {
+        ...where,
+        OR: [
+          {
+            endereco: {
+              cidade: {
+                startsWith: search,
+                mode: 'insensitive',
+              },
+            },
+          },
+          {
+            endereco: {
+              bairro: {
+                startsWith: search,
+                mode: 'insensitive',
+              },
+            },
+          },
+        ],
+      }
+    }
+
     const imovel = await prisma.imovel.findMany({
       where,
       include: {
@@ -148,6 +191,7 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
             numero: true,
           },
         },
+        ImageImovel: true,
       },
       orderBy: {
         tipoContrato: 'asc',
@@ -157,6 +201,12 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
     const total = await prisma.imovel.count({ where })
 
     const totalPage = take ? Math.ceil(total / take) : total
+
+    imovel.forEach((elem) => {
+      elem.ImageImovel.forEach((fr) => {
+        fr.path = `${env.APP_HOST}/${fr.path}`
+      })
+    })
 
     const result: {
       imoveis: Imovel[]

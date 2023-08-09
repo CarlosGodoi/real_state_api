@@ -15,7 +15,7 @@ export interface ICreateImovelDTO {
   endereco: IEndereco
   status?: StatusImovel
   corretorId?: string
-  images?: string[]
+  images?: string[] | null
 }
 export interface IUpdateImovelDTO {
   id: string

@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function refresh(request: FastifyRequest, reply: FastifyReply) {
+  console.log(request)
   await request.jwtVerify({ onlyCookie: true })
 
   const { role } = request.user

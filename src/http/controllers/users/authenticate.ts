@@ -12,6 +12,8 @@ export async function authenticate(
     senha: z.string().min(6),
   })
 
+  console.log(request.body)
+
   const { email, senha } = registerBodySchema.parse(request.body)
 
   try {
@@ -29,6 +31,7 @@ export async function authenticate(
       {
         sign: {
           sub: user.id,
+          expiresIn: '1d',
         },
       },
     )
@@ -43,6 +46,11 @@ export async function authenticate(
       },
     )
 
+    const result = {
+      usuario: user,
+      token,
+    }
+
     return reply
       .setCookie('refreshToken', refreshToken, {
         path: '/',
@@ -51,7 +59,7 @@ export async function authenticate(
         httpOnly: true,
       })
       .status(200)
-      .send({ token })
+      .send({ ...result })
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
       return reply.status(400).send({ message: error.message })

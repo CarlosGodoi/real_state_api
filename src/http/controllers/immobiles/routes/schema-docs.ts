@@ -50,7 +50,7 @@ export const schemaCreate = {
         },
       },
       400: {
-        description: 'Erro',
+        description: 'Não foi possível enviar os dados',
         type: 'object',
         properties: {
           message: { type: 'string' },

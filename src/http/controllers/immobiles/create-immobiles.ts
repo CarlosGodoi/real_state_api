@@ -20,6 +20,7 @@ export async function createImmobile(
       numero: z.number(),
       cep: z.string(),
     }),
+    images: z.array(z.string()).nullable(),
   })
   const body: ICreateImovelDTO = request.body as ICreateImovelDTO
   body.corretorId = request.user.sub
