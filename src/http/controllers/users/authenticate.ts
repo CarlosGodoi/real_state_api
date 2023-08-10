@@ -12,8 +12,6 @@ export async function authenticate(
     senha: z.string().min(6),
   })
 
-  console.log(request.body)
-
   const { email, senha } = registerBodySchema.parse(request.body)
 
   try {
@@ -50,6 +48,7 @@ export async function authenticate(
       usuario: user,
       token,
     }
+    console.log(result)
 
     return reply
       .setCookie('refreshToken', refreshToken, {

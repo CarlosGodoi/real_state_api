@@ -86,8 +86,11 @@ app.register(fastifyJwt, {
 })
 
 app.register(multipart, {
+  logLevel: 'error',
+  throwFileSizeLimit: true,
   limits: {
-    fileSize: 5242880,
+    fileSize: 100 * 1024 * 1024,
+    fieldSize: 100 * 1024 * 1024,
   },
 })
 

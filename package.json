@@ -9,7 +9,8 @@
     "build": "tsup src --out-dir build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "generate": "prisma generate"
+    "generate": "prisma generate",
+    "lint": "eslint --fix --ext .ts"
   },
   "keywords": [],
   "author": "Eduardo",
