@@ -215,6 +215,9 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
       where: {
         id,
       },
+      include: {
+        endereco: true,
+      },
     });
 
     return imovel;
