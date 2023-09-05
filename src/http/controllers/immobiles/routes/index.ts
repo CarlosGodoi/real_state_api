@@ -11,6 +11,7 @@ import {
   schemaListagem,
   schemaUpdate,
 } from "./schema-docs";
+import { getImmobileById } from "../get-Immobile-by-id";
 
 export async function imovelRoutes(app: FastifyInstance) {
   app.addHook("preHandler", verifyJWT);
@@ -22,6 +23,8 @@ export async function imovelRoutes(app: FastifyInstance) {
   app.put("/imovel/:id", schemaUpdate, upadateImmobile);
 
   app.get("/imoveis", schemaListagem, listImmobiles);
+
+  app.get("/imovel/:id", getImmobileById);
 
   app.delete("/imovel/:id", schemaDelete, deleteImmobile);
 }

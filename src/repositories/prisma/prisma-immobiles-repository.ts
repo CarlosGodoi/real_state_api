@@ -9,6 +9,7 @@ import {
 import { Imovel, Prisma, TipoContrato, StatusImovel } from "@prisma/client";
 import { env } from "@/env";
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error";
+import { GetResult } from "@prisma/client/runtime";
 
 const Pagination = (skip: number, take: number) => {
   const calcSkip = (skip - 1) * take;
@@ -68,20 +69,6 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
       },
     });
 
-    return imovel;
-  }
-
-  async update(data: IUpdateImovelDTO) {
-    const imovel = await prisma.imovel.update({
-      where: {
-        id: data.id ? data.id : "",
-      },
-      data: {
-        tipoContrato: data.tipoContrato,
-        preco: data.preco,
-        status: data.status,
-      },
-    });
     return imovel;
   }
 
@@ -223,6 +210,16 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
     return result;
   }
 
+  async getImmobileById(id: string) {
+    const imovel = await prisma.imovel.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return imovel;
+  }
+
   async findById(id: string) {
     const imovel = await prisma.imovel.findUnique({
       where: {
@@ -230,6 +227,20 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
       },
       include: {
         ImageImovel: true,
+      },
+    });
+    return imovel;
+  }
+
+  async update(data: IUpdateImovelDTO) {
+    const imovel = await prisma.imovel.update({
+      where: {
+        id: data.id ? data.id : "",
+      },
+      data: {
+        tipoContrato: data.tipoContrato,
+        preco: data.preco,
+        status: data.status,
       },
     });
     return imovel;
