@@ -4,10 +4,9 @@ import { GetImmobileByIdUseCase } from "../Immobiles/getImmobileById";
 
 export function makeGetImmobileByIdUseCase() {
   const getImmobileByIdRepository = new PrismaImmobilesRepository();
-  const usersRepository = new PrismaUsersRepository();
+
   const getImmobileByIdUseCase = new GetImmobileByIdUseCase(
-    getImmobileByIdRepository,
-    usersRepository
+    getImmobileByIdRepository
   );
 
   return getImmobileByIdUseCase;

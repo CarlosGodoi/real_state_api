@@ -210,19 +210,6 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
     return result;
   }
 
-  async getImmobileById(id: string) {
-    const imovel = await prisma.imovel.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        endereco: true,
-      },
-    });
-
-    return imovel;
-  }
-
   async findById(id: string) {
     const imovel = await prisma.imovel.findUnique({
       where: {
@@ -230,6 +217,7 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
       },
       include: {
         ImageImovel: true,
+        endereco: true,
       },
     });
     return imovel;

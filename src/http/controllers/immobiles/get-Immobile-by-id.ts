@@ -11,7 +11,7 @@ export async function getImmobileById(
 
     const imovel = await getImmobileByIdUseCase.execute(id);
 
-    return reply.status(200).send(imovel);
+    return reply.status(200).send({ imovel });
   } catch (error) {
     if (error) {
       return reply.status(409).send({ message: error });
