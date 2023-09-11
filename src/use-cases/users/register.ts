@@ -1,19 +1,19 @@
-import { UsersRepository } from '@/repositories/users-repository'
-import { Role, Usuario } from '@prisma/client'
-import { hash } from 'bcryptjs'
-import { UserAlreadyExistsError } from '../errors/user-already-exists-error'
+import { UsersRepository } from "@/repositories/users-repository";
+import { Role, Usuario } from "@prisma/client";
+import { hash } from "bcryptjs";
+import { UserAlreadyExistsError } from "../errors/user-already-exists-error";
 // import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 
 interface RegisterUseCaseRequest {
-  nome: string
-  email: string
-  senha: string
-  telefone?: string
-  perfil: Role
+  nome: string;
+  email: string;
+  senha: string;
+  telefone?: string;
+  perfil: Role;
 }
 
 interface RegisterUseCaseResponse {
-  user: Usuario
+  user: Usuario;
 }
 
 export class RegisterUseCase {
@@ -26,12 +26,12 @@ export class RegisterUseCase {
     telefone,
     senha,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
-    const password_hash = await hash(senha, 6)
+    const password_hash = await hash(senha, 6);
 
-    const emailExists = await this.usersRepository.findByEmail(email)
+    const emailExists = await this.usersRepository.findByEmail(email);
 
     if (emailExists) {
-      throw new UserAlreadyExistsError()
+      throw new UserAlreadyExistsError();
     }
 
     const user = await this.usersRepository.create({
@@ -40,8 +40,9 @@ export class RegisterUseCase {
       perfil,
       telefone,
       senha: password_hash,
-    })
+    });
+    console.log(user);
 
-    return { user }
+    return { user };
   }
 }

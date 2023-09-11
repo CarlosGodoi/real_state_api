@@ -1,6 +1,7 @@
 import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials-error";
 import { UserAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error";
 import { makeRegisterUseCase } from "@/use-cases/factories/make-register-use-case";
+import { isvalidPassword } from "@/utils/validate";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
@@ -8,7 +9,10 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
     nome: z.string().trim().min(1, { message: "Nome é obrigatório" }),
     email: z.string().email(),
-    senha: z.string().min(6),
+    senha: z.string().refine(isvalidPassword, () => ({
+      message:
+        "Senha deve ter no mínimo 6 caracteres, ao menos 1 letra maiúscula, ao menos 1 número,  ao menos 1 caractere especial.",
+    })),
     perfil: z.enum(["ADMIN", "CORRETOR", "COMPRADOR"]),
     telefone: z.string(),
   });
