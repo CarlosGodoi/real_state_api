@@ -2,6 +2,9 @@
   "name": "real_state_api",
   "version": "1.0.0",
   "description": "API para serviçoes administrativos de imobiliária",
+    "engines": {
+    "node": "18.x"
+  },
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
