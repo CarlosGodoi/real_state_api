@@ -10,6 +10,12 @@ npm install
 
 docker compose up
 
+## 👨‍💻 Gerar schema e Executar as migrations
+
+npx prisma generate
+
+npx prisma migrate dev
+
 ## Testes unitários ✅
 
 ## API Documentada com Swagger
