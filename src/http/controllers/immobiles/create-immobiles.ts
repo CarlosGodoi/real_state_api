@@ -7,6 +7,8 @@ export async function createImmobile(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  console.log(request.body);
+
   const createImovelBodySchema = z.object({
     tipoContrato: z.enum(['VENDA', 'ALUGUEL']),
     quantidadeQuartos: z.number(),

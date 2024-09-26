@@ -2,7 +2,7 @@
   "name": "real_state_api",
   "version": "1.0.0",
   "description": "API para serviçoes administrativos de imobiliária",
-    "engines": {
+  "engines": {
     "node": "18.x"
   },
   "main": "index.js",
@@ -20,14 +20,14 @@
   "author": "Eduardo",
   "license": "MIT",
   "devDependencies": {
-    "@mermaid-js/mermaid-cli": "10.2.2",
+    "@mermaid-js/mermaid-cli": "^11.2.0",
     "@rocketseat/eslint-config": "1.2.0",
     "@types/bcryptjs": "2.4.2",
     "@types/multer": "1.4.7",
     "@types/node": "20.3.0",
     "@types/uuid": "9.0.2",
     "eslint": "8.42.0",
-    "prisma-erd-generator": "1.6.2",
+    "prisma-erd-generator": "^1.2.5",
     "tsup": "6.7.0",
     "tsx": "3.12.7",
     "typescript": "5.1.3",
