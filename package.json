@@ -15,7 +15,8 @@
     "test:watch": "vitest",
     "generate": "prisma generate",
     "lint": "eslint --fix --ext .ts",
-    "build_test": "tsc && tsc-alias"
+    "build_test": "tsc && tsc-alias",
+    "vercel-build": "npx prisma migrate deploy"
   },
   "keywords": [],
   "author": "Eduardo",
