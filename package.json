@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
-    "build": "tsup src --out-dir dist",
+    "start:prod": "node dist/src/server.js",
+    "build": "tsup src --out-dir dist && cp -r src/{@types,docs,env,http,lib,repositories,use-cases,utils} dist/",
     "test": "vitest run",
     "test:watch": "vitest",
     "generate": "prisma generate",
