@@ -43,6 +43,7 @@ describe("List Immobile Use Case", () => {
       area: 200,
       status: "NEGOCIACAO",
       quantidadeQuartos: 3,
+      quantidadeBanheiros: 3,
       endereco: {
         rua: "rua teste",
         bairro: "teste",
@@ -52,6 +53,7 @@ describe("List Immobile Use Case", () => {
       },
       preco: 200000,
       tipoContrato: "VENDA",
+      tipoImovel: 'CASA',
       corretorId: "corretor-2",
     });
 
@@ -60,6 +62,7 @@ describe("List Immobile Use Case", () => {
       area: 500,
       status: "PENDENTE",
       quantidadeQuartos: 3,
+      quantidadeBanheiros: 3,
       endereco: {
         rua: "Rua nova",
         bairro: "Bairro teste",
@@ -69,6 +72,7 @@ describe("List Immobile Use Case", () => {
       },
       preco: 300000,
       tipoContrato: "ALUGUEL",
+      tipoImovel: 'CASA',
       corretorId: "corretor-1",
     });
 

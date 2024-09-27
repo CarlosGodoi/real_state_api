@@ -45,6 +45,7 @@ describe('Delete Immobile Use Case', () => {
       area: 200,
       status: 'NEGOCIACAO',
       quantidadeQuartos: 3,
+      quantidadeBanheiros: 3,
       endereco: {
         rua: 'rua teste',
         bairro: 'teste',
@@ -54,6 +55,7 @@ describe('Delete Immobile Use Case', () => {
       },
       preco: 200,
       tipoContrato: 'VENDA',
+      tipoImovel: 'CASA',
       corretorId,
     })
 
@@ -80,6 +82,7 @@ describe('Delete Immobile Use Case', () => {
       area: 200,
       status: 'NEGOCIACAO',
       quantidadeQuartos: 3,
+      quantidadeBanheiros: 3,
       endereco: {
         rua: 'rua teste',
         bairro: 'teste',
@@ -89,6 +92,7 @@ describe('Delete Immobile Use Case', () => {
       },
       preco: 200,
       tipoContrato: 'VENDA',
+      tipoImovel: 'CASA',
       corretorId,
     })
 
