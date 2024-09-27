@@ -26,6 +26,7 @@ describe('Create Immobile Use Case', () => {
       area: 200,
       status: 'NEGOCIACAO',
       quantidadeQuartos: 3,
+      quantidadeBanheiros: 3,
       endereco: {
         rua: 'rua teste',
         bairro: 'teste',
@@ -35,6 +36,7 @@ describe('Create Immobile Use Case', () => {
       },
       preco: 200,
       tipoContrato: 'VENDA',
+      tipoImovel: 'CASA',
       corretorId: 'corretor-1',
     })
 
@@ -58,6 +60,7 @@ describe('Create Immobile Use Case', () => {
         area: 200,
         status: 'NEGOCIACAO',
         quantidadeQuartos: 3,
+        quantidadeBanheiros: 3,
         endereco: {
           rua: 'rua teste',
           bairro: 'teste',
@@ -67,6 +70,7 @@ describe('Create Immobile Use Case', () => {
         },
         preco: 200,
         tipoContrato: 'VENDA',
+        tipoImovel: 'CASA',
         corretorId,
       })
       throw new InvalidCredentialsError()
