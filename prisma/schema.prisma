@@ -79,18 +79,25 @@ enum StatusImovel {
   PENDENTE
 }
 
+enum TipoImovel {
+  CASA
+  APARTAMENTO
+}
+
 model Imovel {
-  id                String            @id @default(uuid())
-  tipoContrato      TipoContrato      @map("tipo_contrato")
-  quantidadeQuartos Int               @map("quantidade_quartos")
-  area              Float
-  preco             Int
-  endereco          Endereco?
-  status            StatusImovel
-  createdAt         DateTime          @default(now())
-  ImovelUsuario     ImovelCorretor?
-  CompradorImovel   CompradorImovel[]
-  ImageImovel       ImageImovel[]
+  id                  String            @id @default(uuid())
+  tipoContrato        TipoContrato      @map("tipo_contrato")
+  quantidadeQuartos   Int               @map("quantidade_quartos")
+  quantidadeBanheiros Int?              @map("quantidade_banheiros")
+  area                Float
+  preco               Int
+  endereco            Endereco?
+  status              StatusImovel
+  tipoImovel          TipoImovel?
+  createdAt           DateTime          @default(now())
+  ImovelUsuario       ImovelCorretor?
+  CompradorImovel     CompradorImovel[]
+  ImageImovel         ImageImovel[]
 }
 
 model ImageImovel {

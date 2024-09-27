@@ -1,4 +1,4 @@
-import { StatusImovel, TipoContrato } from "@prisma/client";
+import { StatusImovel, TipoContrato, TipoImovel } from "@prisma/client";
 interface IEndereco {
   rua: string;
   bairro: string;
@@ -10,10 +10,12 @@ export interface ICreateImovelDTO {
   id?: string;
   tipoContrato: TipoContrato;
   quantidadeQuartos: number;
+  quantidadeBanheiros: number;
   area: number;
   preco: number;
   endereco: IEndereco;
   status?: StatusImovel;
+  tipoImovel: TipoImovel;
   corretorId?: string;
   images?: string[] | null;
 }

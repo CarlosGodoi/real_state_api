@@ -12,9 +12,11 @@ export async function createImmobile(
   const createImovelBodySchema = z.object({
     tipoContrato: z.enum(['VENDA', 'ALUGUEL']),
     quantidadeQuartos: z.number(),
+    quantidadeBanheiros: z.number(),
     area: z.number(),
     preco: z.number(),
     status: z.enum(['NEGOCIACAO', 'VENDIDO', 'ALUGADO', 'PENDENTE']),
+    tipoImovel: z.enum(['CASA', 'APARTAMENTO']),
     endereco: z.object({
       rua: z.string().trim().min(1, { message: 'Rua é obrigatório.' }),
       bairro: z.string().trim().min(1, { message: 'Rua é obrigatório.' }),
@@ -27,7 +29,7 @@ export async function createImmobile(
   const body: ICreateImovelDTO = request.body as ICreateImovelDTO
   body.corretorId = request.user.sub
 
-  const { area, endereco, preco, quantidadeQuartos, status, tipoContrato } =
+  const { area, endereco, preco, quantidadeQuartos, quantidadeBanheiros, status, tipoContrato, tipoImovel, } =
     createImovelBodySchema.parse(request.body)
 
   try {
@@ -36,9 +38,11 @@ export async function createImmobile(
     await createImovelUseCase.execute({
       corretorId: body.corretorId,
       quantidadeQuartos,
+      quantidadeBanheiros,
       area,
       preco,
       tipoContrato,
+      tipoImovel,
       status,
       endereco: {
         rua: endereco.rua,

@@ -4,7 +4,7 @@ import { Imovel } from "@prisma/client";
 import path from "path";
 
 export class CreateImmobileUseCase {
-  constructor(private imovelRepository: ImmobileRepository) {}
+  constructor(private imovelRepository: ImmobileRepository) { }
 
   async execute({
     status,
@@ -12,7 +12,9 @@ export class CreateImmobileUseCase {
     endereco,
     preco,
     quantidadeQuartos,
+    quantidadeBanheiros,
     tipoContrato,
+    tipoImovel,
     corretorId,
     images,
   }: ICreateImovelDTO): Promise<Imovel> {
@@ -29,7 +31,9 @@ export class CreateImmobileUseCase {
       endereco,
       preco,
       quantidadeQuartos,
+      quantidadeBanheiros,
       tipoContrato,
+      tipoImovel,
       corretorId,
     });
 

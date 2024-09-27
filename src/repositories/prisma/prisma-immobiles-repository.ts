@@ -9,7 +9,6 @@ import {
 import { Imovel, Prisma, TipoContrato, StatusImovel } from "@prisma/client";
 import { env } from "@/env";
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error";
-import { GetResult } from "@prisma/client/runtime";
 
 const Pagination = (skip: number, take: number) => {
   const calcSkip = (skip - 1) * take;
@@ -48,15 +47,17 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
           createMany: {
             data: data.images
               ? data.images.map((img) => {
-                  return { path: img };
-                })
+                return { path: img };
+              })
               : [],
           },
         },
         preco: data.preco,
         quantidadeQuartos: data.quantidadeQuartos,
+        quantidadeBanheiros: data.quantidadeBanheiros,
         status: "PENDENTE",
         tipoContrato: data.tipoContrato,
+        tipoImovel: data.tipoImovel,
         endereco: {
           create: {
             bairro: data.endereco.bairro,
