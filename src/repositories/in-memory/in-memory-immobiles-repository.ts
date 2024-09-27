@@ -19,7 +19,9 @@ export class InMemoryImmobilesRepository implements ImmobileRepository {
     const imovel = {
       id: data.id || 'imovel-01',
       tipoContrato: data.tipoContrato,
+      tipoImovel: data.tipoImovel,
       quantidadeQuartos: data.quantidadeQuartos,
+      quantidadeBanheiros: data.quantidadeBanheiros,
       area: data.area,
       preco: data.preco,
       endereco: data.endereco,
