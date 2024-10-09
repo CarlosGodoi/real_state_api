@@ -6,7 +6,7 @@ import {
   IUpdateImovelDTO,
   IUploadImovelDTO,
 } from "../dto/immobiles-dto";
-import { Imovel, Prisma, TipoContrato, StatusImovel } from "@prisma/client";
+import { Imovel, Prisma, TipoContrato, StatusImovel, TipoImovel } from "@prisma/client";
 import { env } from "@/env";
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error";
 
@@ -25,6 +25,7 @@ export interface IImoveisParamsGetAll extends IPagination {
   precoMin?: number;
   precoMax?: number;
   tipoContrato?: string;
+  tipoImovel?: string;
   status?: string;
   cidade?: string;
   bairro?: string;
@@ -112,6 +113,18 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
           ...where,
           tipoContrato: {
             in: parseTipoContratoInArray,
+          },
+        };
+      }
+
+      if (filter.tipoImovel) {
+        const parseTipoImovelInArray = filter.tipoImovel.split(
+          ","
+        ) as TipoImovel[];
+        where = {
+          ...where,
+          tipoImovel: {
+            in: parseTipoImovelInArray,
           },
         };
       }
