@@ -1,7 +1,7 @@
 import { ICreateImovelDTO } from '@/repositories/dto/immobiles-dto'
 import { makeCreateImmobilelUseCase } from '@/use-cases/factories/make-create-immobile-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 
 export async function createImmobile(
   request: FastifyRequest,
@@ -35,7 +35,7 @@ export async function createImmobile(
   try {
     const createImovelUseCase = makeCreateImmobilelUseCase()
 
-    await createImovelUseCase.execute({
+    const novoImovel = await createImovelUseCase.execute({
       corretorId: body.corretorId,
       quantidadeQuartos,
       quantidadeBanheiros,
@@ -52,12 +52,15 @@ export async function createImmobile(
         cep: endereco.cep,
       },
     })
+    return reply.status(201).send({ id: novoImovel.id })
   } catch (error) {
+
+    if (error instanceof ZodError) {
+      console.log("Erros de validação:", error.errors);
+    }
     if (error) {
       return reply.status(409).send({ message: error })
     }
-    throw error
+    return reply.status(500).send(error);
   }
-
-  return reply.status(201).send()
 }
