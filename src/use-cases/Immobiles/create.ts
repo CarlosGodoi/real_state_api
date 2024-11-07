@@ -8,11 +8,13 @@ export class CreateImmobileUseCase {
 
   async execute({
     status,
+    businessName,
     area,
     endereco,
     preco,
     quantidadeQuartos,
     quantidadeBanheiros,
+    description,
     tipoContrato,
     tipoImovel,
     corretorId,
@@ -27,11 +29,13 @@ export class CreateImmobileUseCase {
 
     const imovel = await this.imovelRepository.create({
       status,
+      businessName,
       area,
       endereco,
       preco,
       quantidadeQuartos,
       quantidadeBanheiros,
+      description,
       tipoContrato,
       tipoImovel,
       corretorId,

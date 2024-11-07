@@ -18,6 +18,7 @@ export class InMemoryImmobilesRepository implements ImmobileRepository {
   async create(data: ICreateImovelDTO) {
     const imovel = {
       id: data.id || 'imovel-01',
+      businessName: data.businessName || '',
       tipoContrato: data.tipoContrato,
       tipoImovel: data.tipoImovel,
       quantidadeQuartos: data.quantidadeQuartos,
@@ -26,6 +27,7 @@ export class InMemoryImmobilesRepository implements ImmobileRepository {
       preco: data.preco,
       endereco: data.endereco,
       status: data.status || StatusImovel.ALUGADO,
+      description: data.description || '',
       corretorId: data.corretorId || 'corretor-1',
       images: data.images || undefined,
       createdAt: new Date(),

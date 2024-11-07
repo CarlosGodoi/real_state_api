@@ -8,11 +8,13 @@ interface IEndereco {
 }
 export interface ICreateImovelDTO {
   id?: string;
+  businessName?: string | null
   tipoContrato: TipoContrato;
   quantidadeQuartos: number;
   quantidadeBanheiros: number;
   area: number;
   preco: number;
+  description?: string | null
   endereco: IEndereco;
   status?: StatusImovel;
   tipoImovel: TipoImovel;

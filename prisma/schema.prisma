@@ -86,6 +86,7 @@ enum TipoImovel {
 
 model Imovel {
   id                  String            @id @default(uuid())
+  businessName        String?
   tipoContrato        TipoContrato      @map("tipo_contrato")
   quantidadeQuartos   Int               @map("quantidade_quartos")
   quantidadeBanheiros Int?              @map("quantidade_banheiros")
@@ -94,6 +95,7 @@ model Imovel {
   endereco            Endereco?
   status              StatusImovel
   tipoImovel          TipoImovel?
+  description         String?
   createdAt           DateTime          @default(now())
   ImovelUsuario       ImovelCorretor?
   CompradorImovel     CompradorImovel[]

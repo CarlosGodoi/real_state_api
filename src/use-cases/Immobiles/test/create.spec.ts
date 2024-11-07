@@ -23,6 +23,7 @@ describe('Create Immobile Use Case', () => {
 
   it('should be able to create immobile', async () => {
     const imovel = await sut.execute({
+      businessName: 'Teste',
       area: 200,
       status: 'NEGOCIACAO',
       quantidadeQuartos: 3,
@@ -37,6 +38,7 @@ describe('Create Immobile Use Case', () => {
       preco: 200,
       tipoContrato: 'VENDA',
       tipoImovel: 'CASA',
+      description: 'Teste',
       corretorId: 'corretor-1',
     })
 
@@ -57,6 +59,7 @@ describe('Create Immobile Use Case', () => {
     const corretorId = 'corretor-1'
     try {
       await sut.execute({
+        businessName: 'Teste',
         area: 200,
         status: 'NEGOCIACAO',
         quantidadeQuartos: 3,
@@ -71,6 +74,7 @@ describe('Create Immobile Use Case', () => {
         preco: 200,
         tipoContrato: 'VENDA',
         tipoImovel: 'CASA',
+        description: 'Teste',
         corretorId,
       })
       throw new InvalidCredentialsError()
