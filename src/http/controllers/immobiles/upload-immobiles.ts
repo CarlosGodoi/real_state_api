@@ -16,7 +16,7 @@ export async function uploadImmobile(
     for await (const part of parts) {
       const stream = cloudinary.uploader.upload_stream(
         {
-          folder: "imoveis", // Defina a pasta no Cloudinary
+          folder: "/imoveis", // Defina a pasta no Cloudinary
           public_id: `${id}-${Date.now()}-${part.filename}`,
         },
         (error, result) => {
