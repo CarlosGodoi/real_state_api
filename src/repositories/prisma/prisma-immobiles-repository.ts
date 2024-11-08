@@ -208,7 +208,8 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
 
     imovel.forEach((elem) => {
       elem.ImageImovel.forEach((fr) => {
-        fr.path = `${env.APP_HOST}/${fr.path}`;
+        fr.path
+        // fr.path = `${env.APP_HOST}/${fr.path}`;
       });
     });
 
