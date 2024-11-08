@@ -34,9 +34,6 @@ export async function createImmobile(
   const { businessName, area, endereco, preco, quantidadeQuartos, quantidadeBanheiros, status, tipoContrato, tipoImovel, description } =
     createImovelBodySchema.parse(request.body)
 
-  console.log('body =>', createImovelBodySchema.parse(request.body));
-
-
   try {
     const createImovelUseCase = makeCreateImmobilelUseCase()
 
@@ -59,7 +56,6 @@ export async function createImmobile(
         cep: endereco.cep,
       },
     })
-    // console.log('novoImovel =>', novoImovel);
 
     return reply.status(201).send({ novoImovel })
   } catch (error) {

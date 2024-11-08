@@ -41,9 +41,6 @@ export class CreateImmobileUseCase {
       corretorId,
     });
 
-    console.log('imovel =>', imovel);
-
-
     return imovel;
   }
 }
