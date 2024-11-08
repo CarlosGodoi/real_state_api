@@ -44,6 +44,7 @@ describe('Update Immobile Use Case', () => {
     const immobileId = 'imovel-01'
     await sut.execute({
       id: immobileId,
+      businessName: 'Teste',
       area: 200,
       status: 'NEGOCIACAO',
       quantidadeQuartos: 3,
@@ -58,6 +59,7 @@ describe('Update Immobile Use Case', () => {
       preco: 200,
       tipoContrato: 'VENDA',
       tipoImovel: 'CASA',
+      description: 'Teste',
       corretorId,
     })
 
@@ -86,6 +88,7 @@ describe('Update Immobile Use Case', () => {
     try {
       await sut.execute({
         area: 200,
+        businessName: 'Teste',
         status: 'NEGOCIACAO',
         quantidadeQuartos: 3,
         quantidadeBanheiros: 3,
@@ -99,6 +102,7 @@ describe('Update Immobile Use Case', () => {
         preco: 200,
         tipoContrato: 'VENDA',
         tipoImovel: 'CASA',
+        description: 'Teste',
         corretorId: 'non-exists',
       })
       throw new InvalidCredentialsError()
