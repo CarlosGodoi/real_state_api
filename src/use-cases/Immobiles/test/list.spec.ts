@@ -40,6 +40,7 @@ describe("List Immobile Use Case", () => {
 
     await sut.execute({
       id: "imovel-01",
+      businessName: 'Teste',
       area: 200,
       status: "NEGOCIACAO",
       quantidadeQuartos: 3,
@@ -54,11 +55,13 @@ describe("List Immobile Use Case", () => {
       preco: 200000,
       tipoContrato: "VENDA",
       tipoImovel: 'CASA',
+      description: 'Teste',
       corretorId: "corretor-2",
     });
 
     await sut.execute({
       id: "imovel-02",
+      businessName: 'Teste',
       area: 500,
       status: "PENDENTE",
       quantidadeQuartos: 3,
@@ -73,6 +76,7 @@ describe("List Immobile Use Case", () => {
       preco: 300000,
       tipoContrato: "ALUGUEL",
       tipoImovel: 'CASA',
+      description: 'Teste',
       corretorId: "corretor-1",
     });
 
