@@ -34,6 +34,9 @@ export async function createImmobile(
   const { businessName, area, endereco, preco, quantidadeQuartos, quantidadeBanheiros, status, tipoContrato, tipoImovel, description } =
     createImovelBodySchema.parse(request.body)
 
+  console.log('body =>', createImovelBodySchema.parse(request.body));
+
+
   try {
     const createImovelUseCase = makeCreateImmobilelUseCase()
 
@@ -56,15 +59,19 @@ export async function createImmobile(
         cep: endereco.cep,
       },
     })
-    return reply.status(201).send({ id: novoImovel.id })
-  } catch (error) {
+    // console.log('novoImovel =>', novoImovel);
 
+    return reply.status(201).send({ novoImovel })
+  } catch (error) {
     if (error instanceof ZodError) {
       console.log("Erros de validação:", error.errors);
+      return reply.status(400).send({ message: "Erro de validação", errors: error.errors });
+    } else if (error instanceof Error) {
+      console.error("Erro ao criar imóvel:", error);
+      return reply.status(409).send({ message: error.message });
+    } else {
+      console.error("Erro desconhecido ao criar imóvel:", error);
+      return reply.status(500).send({ message: "Erro interno do servidor" });
     }
-    if (error) {
-      return reply.status(409).send({ message: error })
-    }
-    return reply.status(500).send(error);
   }
 }

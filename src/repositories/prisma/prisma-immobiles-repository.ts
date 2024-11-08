@@ -53,12 +53,14 @@ export class PrismaImmobilesRepository implements ImmobileRepository {
               : [],
           },
         },
+        businessName: data.businessName,
         preco: data.preco,
         quantidadeQuartos: data.quantidadeQuartos,
         quantidadeBanheiros: data.quantidadeBanheiros,
         status: "PENDENTE",
         tipoContrato: data.tipoContrato,
         tipoImovel: data.tipoImovel,
+        description: data.description,
         endereco: {
           create: {
             bairro: data.endereco.bairro,
