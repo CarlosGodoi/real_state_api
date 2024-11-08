@@ -42,6 +42,7 @@ describe('Delete Immobile Use Case', () => {
 
     const immobile = await sut.execute({
       id: immobileId,
+      businessName: 'Teste',
       area: 200,
       status: 'NEGOCIACAO',
       quantidadeQuartos: 3,
@@ -56,6 +57,7 @@ describe('Delete Immobile Use Case', () => {
       preco: 200,
       tipoContrato: 'VENDA',
       tipoImovel: 'CASA',
+      description: 'Teste',
       corretorId,
     })
 
@@ -79,6 +81,7 @@ describe('Delete Immobile Use Case', () => {
 
     await sut.execute({
       id: immobileId,
+      businessName: 'Teste',
       area: 200,
       status: 'NEGOCIACAO',
       quantidadeQuartos: 3,
@@ -93,6 +96,7 @@ describe('Delete Immobile Use Case', () => {
       preco: 200,
       tipoContrato: 'VENDA',
       tipoImovel: 'CASA',
+      description: 'Teste',
       corretorId,
     })
 
